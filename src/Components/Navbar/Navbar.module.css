@@ -1,0 +1,26 @@
+.Navbar {
+    grid-area: Navbar;
+    border-radius: .5rem;
+    margin-top: .5rem;
+    margin-left: 1rem;
+}
+
+.NavLink {
+    display: inline-block;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-left: .5rem;
+    width: 6rem;
+    border-radius: .5rem;
+    color: #61dafb;
+    text-decoration: none;
+    transition: all linear .2s;
+}
+
+.NavLink.active {
+    color: white;
+}
+
+.NavLink:hover {
+    background: #30353e;
+}

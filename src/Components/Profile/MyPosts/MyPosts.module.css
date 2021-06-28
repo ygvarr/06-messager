@@ -1,0 +1,11 @@
+.MyPostsBtn {
+    background-color: #30353e;
+    color: white;
+}
+
+.MyPostsTextarea {
+    max-width: 90%;
+    background-color: #30353e;
+    border-color: #61dafb;
+    color: white;
+}
