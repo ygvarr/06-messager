@@ -1,23 +1,4 @@
 .Dialogs {
     display: grid;
-    grid-template-columns: 1fr 3fr;
-}
-
-.NavLink {
-    color: #61dafb;
-    text-decoration: none;
-
-    margin-bottom: 1rem;
-    margin-left: 1rem;
-}
-
-.NavLink.active {
-    color: white;
-}
-
-.dialog {
-    margin: .5rem;
-    padding: 1rem;
-    border-radius: .5rem;
-    background-color: #282c34;
+    grid-template-columns: 1fr 4fr;
 }
