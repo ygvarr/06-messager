@@ -1,3 +1,10 @@
+.AddPost {
+    margin: .5rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    background-color: #282c34;
+}
+
 .MyPostsBtn {
     background-color: #30353e;
     color: white;
