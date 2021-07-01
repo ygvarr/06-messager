@@ -18,17 +18,23 @@ const state = {
             {id: 1, message: 'Success is the ability to go from failure to failure.', likes: '42'},
             {id: 2, message: 'Work hard to get what you like, otherwise you be forced to just like.', likes: '24'},
             {id: 3, message: 'Our life is what our thoughts make it.', likes: '69'}
-        ]
+        ],
+        newPostText: ''
     },
     navbar: {}
 }
-export const addPost = (postMessage) => {
+export const addPost = () => {
     const newPost = {
         id: 4,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likes: 0
     }
     state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText = ''
+    rerenderEntireTree(state)
+}
+export const updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText
     rerenderEntireTree(state)
 }
 export default state
