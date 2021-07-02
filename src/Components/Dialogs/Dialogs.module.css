@@ -2,3 +2,22 @@
     display: grid;
     grid-template-columns: 1fr 4fr;
 }
+
+.DialogsBtn {
+    background-color: #30353e;
+    color: white;
+}
+
+.DialogsTextarea {
+    max-width: 90%;
+    background-color: #30353e;
+    border-color: #61dafb;
+    color: white;
+}
+
+.DialogsNewMessageFrame {
+    margin: .5rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    background-color: #282c34;
+}

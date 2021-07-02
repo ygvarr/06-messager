@@ -18,6 +18,7 @@ const MyPosts = (props) => {
             <div className={classes.AddPost}>
                 <h4>My posts:</h4>
                 <textarea onChange={onPostChange}
+                          placeholder={'Enter your post'}
                           ref={newPostElement}
                           value={props.newPostText}
                           className={classes.MyPostsTextarea}/>
