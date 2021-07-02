@@ -6,13 +6,11 @@ const MyPosts = (props) => {
     const postElements = props.posts.map(p => <Post key={p.id} likes={p.likes} message={p.message}/>)
     const newPostElement = React.createRef()
     const addPost = () => {
-        if (newPostElement.current.value !== '') {
-            props.addPost()
-        }
+        props.dispatch({type: 'ADD-POST'})
     }
     const onPostChange = () => {
         const text = newPostElement.current.value
-        props.updateNewPostText(text)
+        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text})
     }
     return (
         <div className={classes.MyPosts}>
