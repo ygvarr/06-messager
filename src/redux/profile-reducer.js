@@ -3,13 +3,16 @@ const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const profileReducer = (state, action) => {
     switch (action.type) {
         case ADD_POST:
-            const newPost = {
-                id: 4,
-                message: state.newPostText,
-                likes: 0
+            if (state.newPostText !== '') {
+                const idGen = () => state.posts.length + 1
+                const newPost = {
+                    id: idGen(),
+                    message: state.newPostText,
+                    likes: 0
+                }
+                state.posts.push(newPost)
+                state.newPostText = ''
             }
-            state.posts.push(newPost)
-            state.newPostText = ''
             return state
         case UPDATE_NEW_POST_TEXT:
             state.newPostText = action.newText

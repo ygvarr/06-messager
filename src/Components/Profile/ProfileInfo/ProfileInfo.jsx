@@ -8,7 +8,7 @@ const ProfileInfo = (props) => {
             <div>
                 <img src={ReactPng} className={classes.ReactPng} alt='ReactPng'/>
             </div>
-            <div>Ava + description</div>
+            <h3><i>Photo and description</i></h3>
         </div>
     )
 }
