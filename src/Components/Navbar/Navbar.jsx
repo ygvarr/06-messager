@@ -9,6 +9,10 @@ const Navbar = (props) => {
                 My profile
             </NavLink>
             <br/>
+            <NavLink className={classes.NavLink} activeClassName={classes.active} to='/users'>
+                Users
+            </NavLink>
+            <br/>
             <NavLink className={classes.NavLink} activeClassName={classes.active} to='/feed'>
                 News
             </NavLink>
@@ -28,5 +32,4 @@ const Navbar = (props) => {
         </div>
     )
 }
-
 export default Navbar
