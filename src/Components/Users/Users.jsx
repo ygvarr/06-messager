@@ -1,23 +1,13 @@
 import React from 'react'
-// import PathUserAva from './../../Media/ava.png'
 import PathUserAva from './../../Media/ava.png'
+import axios from 'axios'
 
 const Users = (props) => {
     if (props.users.length === 0) {
-        props.setUsers([
-            {
-                id: 1, fullName: 'John K.', status: 'Happy', followed: true, pathAva: PathUserAva,
-                location: {city: 'Minsk', country: 'Belarus'}
-            },
-            {
-                id: 2, fullName: 'Alex P.', status: 'Happy', followed: false, pathAva: PathUserAva,
-                location: {city: 'Moscow', country: 'Russia'}
-            },
-            {
-                id: 3, fullName: 'Martin T.', status: 'Happy', followed: true, pathAva: PathUserAva,
-                location: {city: 'Kiev', country: 'Ukraine'}
-            }
-        ])
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                props.setUsers(response.data.items)
+            })
     }
     return (
         <div>
@@ -25,7 +15,7 @@ const Users = (props) => {
                 <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.pathAva} alt='#'/>
+                            <img src={u.photos.small != null ? u.photos.small : PathUserAva} alt=''/>
                         </div>
                         <div>
                             {u.followed
@@ -39,12 +29,13 @@ const Users = (props) => {
                     </span>
                     <span>
                         <span>
-                            <div>{u.fullName}</div>
+                            <div>{u.name}</div>
                             <div>{u.status}</div>
+                            <div>id: {u.id}</div>
                         </span>
                         <span>
-                            <div>{u.location.country}</div>
-                            <div>{u.location.city}</div>
+                            <div>{'u.location.country'}</div>
+                            <div>{'u.location.city'}</div>
                         </span>
                     </span>
                 </div>))}

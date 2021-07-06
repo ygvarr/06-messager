@@ -25,7 +25,6 @@ const MyPosts = (props) => {
                     <button onClick={onAddPost}
                             className={classes.MyPostsBtn}>Add
                     </button>
-                    <button className={classes.MyPostsBtn}>Remove</button>
                 </div>
             </div>
             {postElements}

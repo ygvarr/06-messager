@@ -6,6 +6,8 @@
 .DialogsBtn {
     background-color: #30353e;
     color: white;
+    border-radius: .3rem;
+    width: 10rem;
 }
 
 .DialogsTextarea {
