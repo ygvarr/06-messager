@@ -27,11 +27,13 @@
 }
 
 .NumPage {
+    color: #61dafb;
     cursor: pointer;
-    color: slategray;
+    text-align: center;
+    margin-bottom: .5rem;
 }
 
 .SelectedPage {
-    color: #61dafb;
+    color: white;
     font-weight: bold;
 }
