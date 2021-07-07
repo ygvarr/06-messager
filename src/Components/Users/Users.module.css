@@ -25,3 +25,13 @@
 .Temp {
     opacity: .1;
 }
+
+.NumPage {
+    cursor: pointer;
+    color: slategray;
+}
+
+.SelectedPage {
+    color: #61dafb;
+    font-weight: bold;
+}
