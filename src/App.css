@@ -5,7 +5,7 @@
     'Header Header Header Header Header'
     'XXX Navbar Content Content YYY'
     'ZZZ ZZZ ZZZ ZZZ ZZZ';
-    grid-template-rows: 1fr 15fr .5fr;
+    grid-template-rows: 3.5rem 15fr .5fr;
     grid-template-columns: 3fr 1.2fr 4fr 4fr 3fr;
     grid-gap: 0.1rem;
     min-height: 100vh;

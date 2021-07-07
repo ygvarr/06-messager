@@ -1,14 +1,27 @@
-/*.Post {*/
-/*    margin: .5rem;*/
-/*    padding: 1rem;*/
-/*    border-radius: .5rem;*/
-/*    background-color: #282c34;*/
-/*}*/
+.Ava {
+    opacity: 60%;
+}
 
-/*.PostAva {*/
-/*    opacity: 60%;*/
-/*}*/
+.FollowBtn {
+    background-color: #30353e;
+    color: white;
+    border-radius: .3rem;
+    width: 5rem;
+}
 
-/*.Like {*/
-/*    color: #61dafb;*/
-/*}*/
+.Wrapper {
+    margin-right: 4rem;
+    margin-left: 4rem;
+    margin-bottom: .5rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    background-color: #282c34;
+}
+
+.Name {
+    color: #61dafb;
+}
+
+.Temp {
+    opacity: .1;
+}
