@@ -37,3 +37,7 @@
     color: white;
     font-weight: bold;
 }
+
+.NavLink {
+    text-decoration: none;
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from './Users.module.css'
 import PathUserAva from '../../Media/ava.png'
+import {NavLink} from 'react-router-dom'
 
 const Users = (props) => {
     const pages = []
@@ -20,10 +21,19 @@ const Users = (props) => {
             {props.users.map(u => (
                 <div className={classes.Wrapper} key={u.id}>
                     <span>
+                        <NavLink className={classes.NavLink} to={'/profile/' + u.id}>
                         <div>
                             <img className={classes.Ava} src={u.photos.small != null ? u.photos.small : PathUserAva}
                                  alt=''/>
                         </div>
+                        <div>
+                            <div className={classes.Name}>{u.name}</div>
+                        </div>
+                        </NavLink>
+                        <span>
+                            <div>id: {u.id}</div>
+                            <div>{u.status}</div>
+                        </span>
                         <div>
                             {u.followed
                                 ? <button className={classes.FollowBtn} onClick={() => {
@@ -35,11 +45,6 @@ const Users = (props) => {
                         </div>
                     </span>
                     <span>
-                        <span>
-                            <div className={classes.Name}>{u.name}</div>
-                            <div>{u.status}</div>
-                            <div>id: {u.id}</div>
-                        </span>
                         <span>
                             <div className={classes.Temp}>{'u.location.country'}</div>
                             <div className={classes.Temp}>{'u.location.city'}</div>
