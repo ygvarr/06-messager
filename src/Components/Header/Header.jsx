@@ -16,8 +16,12 @@ const Header = (props) => {
             <NavLink className={classes.HeaderLink} to='/'>
                 Social Network
             </NavLink>
+            <span className={classes.LoginBlock}>
+                {props.isAuth
+                    ? <NavLink className={classes.HeaderLink} to='/profile'>{props.login}</NavLink>
+                    : <NavLink className={classes.HeaderLink} to='/login'>Login</NavLink>}
+            </span>
         </div>
     )
 }
-
 export default Header
