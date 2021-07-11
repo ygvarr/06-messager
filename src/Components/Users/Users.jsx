@@ -5,11 +5,12 @@ import {NavLink} from 'react-router-dom'
 
 const Users = (props) => {
     const pages = []
-    // const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    // for (let i = 1; i <= pagesCount; i++) {
-    for (let i = 1; i <= 10; i++) {
+    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
+    const max = pages.length
+    pages.length = 10
     return (
         <div>
             <div className={classes.NumPage}>
@@ -17,6 +18,12 @@ const Users = (props) => {
                     className={props.currentPage === p ? classes.SelectedPage : null}
                     onClick={(e) => props.onPageChanged(p)}
                     key={p}>{p} </span>)}
+                <span> ... </span>
+                <span
+                    className={props.currentPage === max ? classes.SelectedPage : null}
+                    onClick={(e) => props.onPageChanged(max)}
+                    key={max}
+                >{max}</span>
             </div>
             {props.users.map(u => (
                 <div className={classes.Wrapper} key={u.id}>

@@ -7,6 +7,8 @@ const instance = axios.create({
         'API-KEY': '47679503-b117-4c49-a982-fa8815f227dc'
     }
 })
+//instance Id
+const loginId = 18151
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
@@ -16,20 +18,16 @@ export const usersAPI = {
     },
     follow(userId = 2) {
         return instance.post(`follow/${userId}`)
-            .then(response => {
-                return response.data
-            })
     },
     unfollow(userId = 2) {
         return instance.delete(`follow/${userId}`)
-            .then(response => {
-                return response.data
-            })
     },
-    auth() {
+    getProfile(userId = loginId) {
+        return instance.get(`profile/${userId}`)
+    }
+}
+export const authAPI = {
+    me() {
         return instance.get('auth/me')
-            .then(response => {
-                return response.data
-            })
     }
 }
