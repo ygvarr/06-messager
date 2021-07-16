@@ -7,7 +7,7 @@ const instance = axios.create({
         'API-KEY': '47679503-b117-4c49-a982-fa8815f227dc'
     }
 })
-//instance Id
+//hardcode instance Id
 const loginId = 18151
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
@@ -16,14 +16,13 @@ export const usersAPI = {
                 return response.data
             })
     },
-    follow(userId = 2) {
+    follow(userId = loginId) {
         return instance.post(`follow/${userId}`)
     },
-    unfollow(userId = 2) {
+    unfollow(userId = loginId) {
         return instance.delete(`follow/${userId}`)
     },
     getProfile(userId = loginId) {
-        console.warn('Obsolete method. Please use profileAPI object')
         return profileAPI.getProfile(userId)
     }
 }

@@ -1,0 +1,14 @@
+.WrapperStatus {
+    color: #61dafb;
+}
+
+.Status {
+    color: white;
+    cursor: pointer;
+}
+
+.SetStatus {
+    max-width: 90%;
+    background-color: #30353e;
+    color: white;
+}
