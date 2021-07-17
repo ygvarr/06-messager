@@ -7,3 +7,11 @@
 .formControl.error span {
     color: coral;
 }
+
+.formSummaryError {
+    border: solid coral .1rem;
+    border-radius: .3rem;
+    color: coral;
+    max-width: 10rem;
+    padding: .3rem;
+}

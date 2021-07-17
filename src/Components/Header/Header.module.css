@@ -21,6 +21,12 @@
     color: #61dafb;
 }
 
+.LogoutBtn {
+    background-color: #30353e;
+    color: white;
+    border-radius: .3rem;
+}
+
 @media (prefers-reduced-motion: no-preference) {
     .HeaderLogo {
         animation: HeaderLogoSpin infinite 20s linear;
