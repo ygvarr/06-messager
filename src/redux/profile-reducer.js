@@ -15,7 +15,6 @@ const initialState = {
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
-            console.log(state.posts)
             const idGen = () => state.posts.length + 1
             const newPost = {
                 id: idGen(),
