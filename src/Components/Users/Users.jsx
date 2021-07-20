@@ -1,67 +1,23 @@
 import React from 'react'
-import classes from './Users.module.css'
-import PathUserAva from '../../Media/ava.png'
-import {NavLink} from 'react-router-dom'
+import Paginator from '../Common/Paginator/Paginator'
+import User from './User'
 
-const Users = (props) => {
-    const pages = []
-    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
-    const max = pages.length
-    pages.length = 10
+const Users = ({currentPage, totalUsersCount, pageSize, onPageChanged, users, ...props}) => {
     return (
         <div>
-            <div className={classes.NumPage}>
-                {pages.map(p => <span
-                    className={props.currentPage === p ? classes.SelectedPage : null}
-                    onClick={(e) => props.onPageChanged(p)}
-                    key={p}>{p} </span>)}
-                <span> ... </span>
-                <span
-                    className={props.currentPage === max ? classes.SelectedPage : null}
-                    onClick={(e) => props.onPageChanged(max)}
-                    key={max}
-                >{max}</span>
-            </div>
-            {props.users.map(u => (
-                <div className={classes.Wrapper} key={u.id}>
-                    <span>
-                        <NavLink className={classes.NavLink} to={'/profile/' + u.id}>
-                        <div>
-                            <img className={classes.Ava} src={u.photos.small != null ? u.photos.small : PathUserAva}
-                                 alt=''/>
-                        </div>
-                        <div>
-                            <div className={classes.Name}>{u.name}</div>
-                        </div>
-                        </NavLink>
-                        <span>
-                            <div>id: {u.id}</div>
-                            <div>{u.status}</div>
-                        </span>
-                        <div>
-                            {u.followed
-                                ? <button className={classes.FollowBtn}
-                                          disabled={props.followingInProgress.some(id => id === u.id)}
-                                          onClick={() => {
-                                              props.unfollow(u.id)
-                                          }}>Unfollow</button>
-                                : <button className={classes.FollowBtn}
-                                          disabled={props.followingInProgress.some(id => id === u.id)}
-                                          onClick={() => {
-                                              props.follow(u.id)
-                                          }}>Follow</button>}
-                        </div>
-                    </span>
-                    <span>
-                        <span>
-                            <div className={classes.Temp}>{'u.location.country'}</div>
-                            <div className={classes.Temp}>{'u.location.city'}</div>
-                        </span>
-                    </span>
-                </div>))}
+            <Paginator
+                currentPage={currentPage}
+                onPageChanged={onPageChanged}
+                totalUsersCount={totalUsersCount}
+                pageSize={pageSize}
+            />
+            {users.map(u => <User
+                user={u}
+                followingInProgress={props.followingInProgress}
+                key={u.id}
+                unfollow={props.unfollow}
+                follow={props.follow}
+            />)}
         </div>
     )
 }

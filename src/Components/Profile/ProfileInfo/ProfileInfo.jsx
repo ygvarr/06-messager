@@ -4,8 +4,8 @@ import ReactPng from '../../../Media/react.png'
 import Preloader from '../../Common/Preloader/Preloader'
 import ProfileStatusWithHooks from './ProfileStatusWithHooks'
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
+const ProfileInfo = ({profile, status, updateStatus}) => {
+    if (!profile) {
         return <Preloader/>
     }
     return (
@@ -14,10 +14,10 @@ const ProfileInfo = (props) => {
                 <img src={ReactPng} className={classes.ReactPng} alt='ReactPng'/>
             </div>
             <div>
-                <img className={classes.Photos} src={props.profile.photos.large} alt=''/>
-                <div><h2>{props.profile.fullName}</h2></div>
-                <div><span className={classes.About}>id: </span> {props.profile.userId}</div>
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                <img className={classes.Photos} src={profile.photos.large} alt=''/>
+                <div><h2>{profile.fullName}</h2></div>
+                <div><span className={classes.About}>id: </span> {profile.userId}</div>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
         </div>
     )

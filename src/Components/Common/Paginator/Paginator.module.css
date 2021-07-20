@@ -1,0 +1,11 @@
+.NumPage {
+    color: #61dafb;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: .5rem;
+}
+
+.SelectedPage {
+    color: white;
+    font-weight: bold;
+}
