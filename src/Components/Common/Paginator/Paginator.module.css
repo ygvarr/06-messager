@@ -9,3 +9,11 @@
     color: white;
     font-weight: bold;
 }
+
+.PageBtn {
+    background-color: #30353e;
+    color: white;
+    border-radius: .3rem;
+    width: 5rem;
+    margin-right: .3rem;
+}
