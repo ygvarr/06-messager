@@ -2,11 +2,6 @@
     margin-left: .5rem;
 }
 
-.ReactPng {
-    width: 60%;
-    opacity: 90%;
-}
-
 .About {
     color: #61dafb;
 }
@@ -14,7 +9,6 @@
 .Photos {
     opacity: .6;
     border-radius: .5rem;
-    /*border-style: solid;*/
     border-width: .1rem;
     border-color: #61dafb;
 }
