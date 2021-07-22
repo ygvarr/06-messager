@@ -15,6 +15,7 @@ import {compose} from 'redux'
 import {initializeApp} from './redux/app-reducer'
 import Preloader from './Components/Common/Preloader/Preloader'
 import store from './redux/redux-store'
+import {withSuspense} from './hoc/withSuspense'
 
 class App extends React.Component {
     componentDidMount() {
@@ -31,11 +32,11 @@ class App extends React.Component {
                 <Navbar className='Navbar'/>
                 <div className='Content'>
                     <Route path='/profile/:userId?'
-                           render={() => <ProfileContainer/>}/>
+                           render={withSuspense(ProfileContainer)}/>
                     <Route path='/im'
-                           render={() => <DialogsContainer/>}/>
+                           render={withSuspense(DialogsContainer)}/>
                     <Route path='/users'
-                           render={() => <UsersContainer/>}/>
+                           render={withSuspense(UsersContainer)}/>
                     <Route path='/login'
                            render={() => <LoginPage/>}/>
                     <Route path='/feed' render={News}/>
