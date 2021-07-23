@@ -40,9 +40,8 @@ const ProfileDataForm = ({initialValues, handleSubmit, error}) => {
                 })}
             </div>
             <div>
+                <button className={classes.EditBtn}>Save</button>
                 {error && <div className={classes.formSummaryError}>{error}</div>}
-                <button className={classes.EditBtn}>Save
-                </button>
             </div>
         </form>
     )

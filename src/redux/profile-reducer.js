@@ -58,15 +58,16 @@ export const savePhoto = (file) => async dispatch => {
 }
 export const saveProfile = (profile) => async (dispatch, getState) => {
     const userId = getState().auth.userId
-    console.log(1)
-    const response = await profileAPI.saveProfile(profile)
-    console.log(2)
-    if (response.data.resultCode === 0) {
-        console.log(3)
-        dispatch(getUserProfile(userId))
+    const data = await profileAPI.saveProfile(profile)
+    if (data.data.resultCode === 0) {
+        if (userId !== null) {
+            dispatch(getUserProfile(userId))
+        } else {
+            throw new Error('userId can\'t be null')
+        }
     } else {
-        console.log(3)
-        dispatch(stopSubmit('edit-profile', {_error: response.data.messages[0]}))
+        dispatch(stopSubmit('edit-profile', {_error: data.data.messages[0]}))
+        return Promise.reject(data.data.messages[0])
     }
 }
 export default profileReducer
