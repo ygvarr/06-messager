@@ -7,6 +7,7 @@ const Profile = (props) => {
     return (
         <div className={classes.Profile}>
             <ProfileInfo profile={props.profile}
+                         saveProfile={props.saveProfile}
                          isOwner={props.isOwner}
                          savePhoto={props.savePhoto}
                          status={props.status}

@@ -18,7 +18,7 @@ const ProfileStatusWithHooks = (props) => {
         setStatus(props.status)
     }, [props.status])
     return (
-        <div className={classes.WrapperStatus}>status:{' '}
+        <div className={classes.WrapperStatus}><b>Status: </b>
             {!editMode &&
             <span className={classes.Status}
                   onDoubleClick={activateEditMode}>{props.status || '♥'}</span>
