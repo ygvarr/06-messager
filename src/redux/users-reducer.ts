@@ -1,9 +1,8 @@
 import {Dispatch} from "redux";
-import {usersAPI} from '../api/api'
 import {updateObjectInArray} from '../utils/object-helpers'
 import {UserType} from "../types/types";
-import {AppStateType, InferActionTypes} from "./redux-store";
-import {ThunkAction} from "redux-thunk";
+import {BaseThunkType, InferActionTypes} from "./redux-store";
+import {usersAPI} from "../api/users-api";
 
 const initialState = {
     users: [] as Array<UserType>,
@@ -13,7 +12,7 @@ const initialState = {
     isFetching: true,
     followingInProgress: [] as Array<number> //users ids
 }
-type InitialState = typeof initialState
+
 const usersReducer = (state = initialState, action: ActionsTypes): InitialState => {
     switch (action.type) {
         case 'FOLLOW':
@@ -45,31 +44,34 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialState 
             return state
     }
 }
-type ActionsTypes = InferActionTypes<typeof actions>
+
 export const actions = {
     followSuccess: (userId: number) => ({type: 'FOLLOW', userId} as const),
     unfollowSuccess: (userId: number) => ({type: 'UNFOLLOW', userId} as const),
     setUsers: (users: Array<UserType>) => ({type: 'SET_USERS', users} as const),
-    setCurrentPage: (currentPage: number) => ({
-        type: 'SET_CURRENT_PAGE',
-        currentPage
-    } as const),
-    setTotalUsersCount: (totalUsersCount: number) => ({
-        type: 'SET_TOTAL_USERS_COUNT',
-        count: totalUsersCount
-    } as const),
-    toggleIsFetching: (isFetching: boolean) => ({
-        type: 'TOGGLE_IS_FETCHING',
-        isFetching
-    } as const),
+    setCurrentPage: (currentPage: number) => ({type: 'SET_CURRENT_PAGE', currentPage} as const),
+    setTotalUsersCount: (totalUsersCount: number) => ({type: 'SET_TOTAL_USERS_COUNT', count: totalUsersCount} as const),
+    toggleIsFetching: (isFetching: boolean) => ({type: 'TOGGLE_IS_FETCHING', isFetching} as const),
     toggleFollowingProgress: (isFetching: boolean, userId: number) => ({
-        type: 'TOGGLE_IS_FOLLOWING_PROGRESS', isFetching, userId
+        type: 'TOGGLE_IS_FOLLOWING_PROGRESS',
+        isFetching,
+        userId
     } as const)
 }
 
 //this thunk creators
-type DispatchType = Dispatch<ActionsTypes>
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
+const _followUnfollowFlow = async (dispatch: Dispatch<ActionsTypes>, userId: number, apiMethod: any,
+                                   actionCreator: (userId: number) => ActionsTypes) => {
+    dispatch(actions.toggleFollowingProgress(true, userId))
+    const response = await apiMethod(userId)
+    if (response.data.resultCode === 0) {
+        dispatch(actionCreator(userId))
+    }
+    dispatch(actions.toggleFollowingProgress(false, userId))
+
+    // dispatch(actionCreator(userId))
+    // dispatch(actions.toggleFollowingProgress(false, userId))
+}
 export const requestUsers = (page: number, pageSize: number): ThunkType => {
     return async (dispatch) => {
         dispatch(actions.toggleIsFetching(true))
@@ -79,15 +81,6 @@ export const requestUsers = (page: number, pageSize: number): ThunkType => {
         dispatch(actions.setUsers(data.items))
         dispatch(actions.setTotalUsersCount(data.totalCount))
     }
-}
-const _followUnfollowFlow = async (dispatch: DispatchType, userId: number, apiMethod: any,
-                                   actionCreator: (userId: number) => ActionsTypes) => {
-    dispatch(actions.toggleFollowingProgress(true, userId))
-    const response = await apiMethod(userId)
-    if (response.data.resultCode === 0) {
-        dispatch(actionCreator(userId))
-    }
-    dispatch(actions.toggleFollowingProgress(false, userId))
 }
 export const follow = (userId: number): ThunkType => {
     return async (dispatch) => {
@@ -99,4 +92,9 @@ export const unfollow = (userId: number): ThunkType => {
         await _followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), actions.unfollowSuccess)
     }
 }
+
 export default usersReducer
+
+type ActionsTypes = InferActionTypes<typeof actions>
+type InitialState = typeof initialState
+type ThunkType = BaseThunkType<ActionsTypes>
