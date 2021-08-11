@@ -4,11 +4,11 @@ import classes from './Paginator.module.css'
 type PropsType = {
     totalItemsCount: number
     pageSize: number
-    currentPage: number
-    onPageChanged: (pageNumber: number) => void
+    currentPage?: number
+    onPageChanged?: (pageNumber: number) => void
     portionSize?: number
 }
-const Paginator: React.FC<PropsType> = ({totalItemsCount, pageSize, currentPage, onPageChanged, portionSize = 10}) => {
+const Paginator: React.FC<PropsType> = ({totalItemsCount, pageSize, currentPage = 1, onPageChanged = x => x, portionSize = 10}) => {
     const pages: Array<number> = []
     const pagesCount = Math.ceil(totalItemsCount / pageSize)
     for (let i = 1; i <= pagesCount; i++) {

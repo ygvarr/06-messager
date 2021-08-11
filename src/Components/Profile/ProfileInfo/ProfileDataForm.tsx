@@ -1,31 +1,40 @@
 import React from 'react'
 import classes from './ProfileInfo.module.css'
-import {createField, Input, Textarea} from '../../Common/FormsControls/FormsControls'
-import {reduxForm} from 'redux-form'
+import {createField, GetStringKeys, Input, Textarea} from '../../Common/FormsControls/FormsControls'
+import {InjectedFormProps, reduxForm} from 'redux-form'
+import {ProfileType} from "../../../types/types";
 
-const ProfileDataForm = ({initialValues, handleSubmit, error}) => {
+type PropsType = {
+    profile: ProfileType
+    initialValues: any
+}
+
+type ProfileTypeKeys = GetStringKeys<ProfileType>
+
+const ProfileDataForm:
+    React.FC<InjectedFormProps<ProfileType, PropsType> & PropsType> = ({initialValues, handleSubmit, error}) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
                 <span className={classes.About}><b>Id: </b></span> {initialValues.userId}
             </div>
             <div>
-                <h2>{createField('Full name', 'fullName', [], Input)}</h2>
+                <h2>{createField<ProfileTypeKeys>('Full name', 'fullName', [], Input)}</h2>
             </div>
             <div>
                 <span
                     className={classes.About}><b>About me: </b>
-                </span> {createField('About me', 'aboutMe', [], Textarea)}
+                </span> {createField<ProfileTypeKeys>('About me', 'aboutMe', [], Textarea)}
             </div>
             <div>
                 <span className={classes.About}>
                     <b>Looking for a job: </b>
-                </span> {createField('', 'lookingForAJob', [], Input, {type: 'checkbox'})}
+                </span> {createField<ProfileTypeKeys>('', 'lookingForAJob', [], Input, {type: 'checkbox'})}
             </div>
             <div>
                 <span
                     className={classes.About}><b>Professional skills: </b>
-                </span> {createField('Professional skills', 'lookingForAJobDescription', [], Textarea)}
+                </span> {createField<ProfileTypeKeys>('Professional skills', 'lookingForAJobDescription', [], Textarea)}
             </div>
             <div>
                 <span className={classes.About}><b>Contacts: </b></span>
@@ -46,5 +55,5 @@ const ProfileDataForm = ({initialValues, handleSubmit, error}) => {
         </form>
     )
 }
-const ProfileDataFormReduxForm = reduxForm({form: 'edit-profile'})(ProfileDataForm)
+const ProfileDataFormReduxForm = reduxForm<ProfileType, PropsType>({form: 'edit-profile'})(ProfileDataForm)
 export default ProfileDataFormReduxForm

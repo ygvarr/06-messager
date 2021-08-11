@@ -2,7 +2,11 @@ import React from 'react'
 import classes from './Navbar.module.css'
 import {NavLink} from 'react-router-dom'
 
-const Navbar = (props) => {
+type PropsType = {
+    className: string
+}
+
+const Navbar: React.FC<PropsType> = () => {
     return (
         <div className={classes.Navbar}>
             <NavLink className={classes.NavLink} activeClassName={classes.active} to='/profile'>

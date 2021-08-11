@@ -2,7 +2,12 @@ import React from 'react'
 import classes from './Post.module.css'
 import PathPostAva from '../../../../Media/ava.png'
 
-const Post = (props) => {
+type PropsType = {
+    message: string
+    likes: number
+}
+
+const Post: React.FC<PropsType> = (props) => {
     return (
         <div className={classes.Post}>
             <img className={classes.PostAva} src={PathPostAva} alt='#'/>

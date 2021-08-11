@@ -3,14 +3,21 @@ import classes from './Header.module.css'
 import PathHeaderLogo from '../../logo.svg'
 import {NavLink} from 'react-router-dom'
 
-const Header = (props) => {
+export type MapPropsType = {
+    isAuth: boolean
+    login: string | null
+}
+export type DispatchPropsType = {
+    logout: () => void
+}
+
+const Header: React.FC<MapPropsType & DispatchPropsType> = (props) => {
     return (
         <div className={classes.Header}>
             <img
                 src={PathHeaderLogo}
                 className={classes.HeaderLogo}
                 alt='#'
-                align='middle'
             />
             <span>Welcome to </span>
             <NavLink className={classes.HeaderLink} to='/'>

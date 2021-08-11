@@ -10,7 +10,6 @@ const initialState = {
         {id: 3, message: 'Our life is what our thoughts make it.', likes: 69}
     ] as Array<PostType>,
     status: '',
-    newPostText: '',
     profile: null as ProfileType | null
 }
 
@@ -23,7 +22,7 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
                 message: action.newPostText,
                 likes: 0
             }
-            return {...state, posts: [...state.posts, newPost], newPostText: ''}
+            return {...state, posts: [...state.posts, newPost]}
         case  'SET_USER_PROFILE':
             return {...state, profile: action.profile}
         case  'SET_STATUS':

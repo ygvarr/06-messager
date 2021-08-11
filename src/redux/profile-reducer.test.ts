@@ -8,7 +8,6 @@ let state = {
         {id: 3, message: 'Our life is what our thoughts make it.', likes: 69}
     ] as Array<PostType>,
     status: '',
-    newPostText: '',
     profile: null
 }
 it('length of posts should be incremented', () => {

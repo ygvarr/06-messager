@@ -2,19 +2,28 @@ import React from 'react'
 import classes from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
-import {Field, reduxForm} from 'redux-form'
-import {Redirect} from 'react-router-dom'
-import {Textarea} from '../Common/FormsControls/FormsControls'
+import {InjectedFormProps, reduxForm} from 'redux-form'
+import {createField, Textarea} from '../Common/FormsControls/FormsControls'
 import {maxLengthCreator, required} from '../../utils/validators/validators'
+import {InitialStateType} from "../../redux/dialogs-reducer";
 
-const Dialogs = (props) => {
+type PropsType = {
+    dialogsPage: InitialStateType
+    sendMessage: (messageText: string) => void
+}
+
+type NewMessageFormValuesType = {
+    newMessageBody: string;
+}
+type NewMessageFormValuesKeysType = Extract<keyof NewMessageFormValuesType, string>
+
+const Dialogs: React.FC<PropsType> = (props) => {
     const state = props.dialogsPage
     const dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
     const messagesElements = state.messages.map(m => <Message message={m.messages} key={m.id}/>)
-    const addNewMessage = (values) => {
+    const addNewMessage = (values: NewMessageFormValuesType) => {
         props.sendMessage(values.newMessageBody)
     }
-    if (!props.isAuth) return <Redirect to='/login'/>
     return (
         <div className={classes.Dialogs}>
             <div>{dialogsElements}</div>
@@ -28,15 +37,12 @@ const Dialogs = (props) => {
     )
 }
 const maxLength50 = maxLengthCreator(50)
-const AddMessageForm = (props) => {
+
+const AddMessageForm: React.FC<InjectedFormProps<NewMessageFormValuesType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field className={classes.DialogsField}
-                       component={Textarea}
-                       validate={[required, maxLength50]}
-                       name={'newMessageBody'}
-                       placeholder={'Enter your message'}/>
+                {createField<NewMessageFormValuesKeysType>('Enter your message', 'newMessageBody', [required, maxLength50], Textarea)}
             </div>
             <div>
                 <button className={classes.DialogsBtn}>
@@ -46,5 +52,5 @@ const AddMessageForm = (props) => {
         </form>
     )
 }
-const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm)
+const AddMessageFormRedux = reduxForm<NewMessageFormValuesType>({form: 'dialogAddMessageForm'})(AddMessageForm)
 export default Dialogs
