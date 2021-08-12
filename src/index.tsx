@@ -8,3 +8,6 @@ ReactDOM.render(
     <MainApp/>, document.getElementById('root')
 )
 reportWebVitals()
+//todo only tsx
+//todo header css
+//todo all format

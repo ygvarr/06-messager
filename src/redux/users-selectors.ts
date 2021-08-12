@@ -1,5 +1,5 @@
 import {createSelector} from 'reselect'
-import {AppStateType} from "./redux-store";
+import {AppStateType} from './redux-store'
 
 const forGetUsers = (state: AppStateType) => {
     return state.usersPage.users
@@ -22,4 +22,7 @@ export const getIsFetching = (state: AppStateType) => {
 }
 export const getFollowingInProgress = (state: AppStateType) => {
     return state.usersPage.followingInProgress
+}
+export const getUsersFilter = (state: AppStateType) => {
+    return state.usersPage.filter
 }
