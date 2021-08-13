@@ -5,25 +5,23 @@ import Music from './Components/Music/Music'
 import News from './Components/News/News'
 import {BrowserRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom'
 import DialogsContainer from './Components/Dialogs/DialogsContainer'
-import UsersContainer from './Components/Users/UsersContainer'
 import ProfileContainer from './Components/Profile/ProfileContainer'
 import HeaderContainer from './Components/Header/HeaderContainer'
-import LoginPage from './Components/Login/Login'
+import {LoginPage} from './Components/Login/LoginPage'
 import {connect, Provider} from 'react-redux'
 import {compose} from 'redux'
 import {initializeApp} from './redux/app-reducer'
 import Preloader from './Components/Common/Preloader/Preloader'
 import store, {AppStateType} from './redux/redux-store'
 import {withSuspense} from './hoc/withSuspense'
-import Settings from "./Components/Settings/Settings";
+import Settings from './Components/Settings/Settings'
+import {UserPage} from './Components/Users/UsersContainer'
 
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type DispatchPropsType = {
     initializeApp: () => void
 }
-
 const SuspendedDialogs = withSuspense(DialogsContainer)
-const SuspendedUsers = withSuspense(UsersContainer)
 const SuspendedProfile = withSuspense(ProfileContainer)
 
 class App extends React.Component<MapPropsType & DispatchPropsType> {
@@ -47,7 +45,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
                         <Route path='/im'
                                render={() => <SuspendedDialogs/>}/>
                         <Route path='/users'
-                               render={() => <SuspendedUsers/>}/>
+                               render={() => <UserPage pageTitle='Users'/>}/>
                         <Route path='/login'
                                render={() => <LoginPage/>}/>
                         <Route path='/feed' render={News}/>
