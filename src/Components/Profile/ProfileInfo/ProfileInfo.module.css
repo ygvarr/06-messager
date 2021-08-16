@@ -1,38 +1,37 @@
-.ProfileInfo {
-    margin-left: .5rem;
+/* .ProfileInfo {
+  margin-left: 0.5rem;
 }
 
 .About {
-    color: #61dafb;
+  color: #61dafb;
 }
 
 .AboutDown {
-    color: #61dafb;
-    padding-left: 1rem;
+  color: #61dafb;
+  padding-left: 1rem;
 }
 
 .Photos {
-    opacity: .6;
-    border-radius: .5rem;
-    border-width: .1rem;
-    border-color: #61dafb;
+  border-radius: 0.5rem;
+  border-width: 0.1rem;
+  border-color: #61dafb;
 }
 
 .EditBtn {
-    background-color: #30353e;
-    color: white;
-    border-radius: .3rem;
-    width: 5rem;
+  background-color: #30353e;
+  color: white;
+  border-radius: 0.3rem;
+  width: 5rem;
 }
 
 .formSummaryError {
-    border: solid coral .1rem;
-    border-radius: .3rem;
-    color: coral;
-    max-width: 10rem;
-    padding: .3rem;
+  border: solid coral 0.1rem;
+  border-radius: 0.3rem;
+  color: coral;
+  max-width: 10rem;
+  padding: 0.3rem;
 }
 
 .Test {
-    color: greenyellow;
-}
+  color: greenyellow;
+} */
