@@ -6,4 +6,3 @@ import './index.css'
 
 ReactDOM.render(<MainApp />, document.getElementById('root'))
 reportWebVitals()
-//todo all format
